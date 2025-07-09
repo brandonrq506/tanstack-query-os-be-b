@@ -1,4 +1,4 @@
-# Tanstack Query - Open Space Frontend
+# Tanstack Query - Open Space Backend
 
 This is the frontend code for the Tanstack Query Open Space.
 Downloading this should only be necessary if the Open Space has ended and the Heroku API no longer exists.
