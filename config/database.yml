@@ -15,9 +15,8 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  # For details on connection pooling, see Rails configuration guide
-  # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
 
 
 development:
@@ -81,5 +80,3 @@ test:
 production:
   <<: *default
   database: tanstack_query_os_be_b_production
-  username: tanstack_query_os_be_b
-  password: <%= ENV["TANSTACK_QUERY_OS_BE_B_DATABASE_PASSWORD"] %>
