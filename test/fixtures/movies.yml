@@ -1,21 +1,41 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  title: MyString
-  sinopsis: MyText
-  trailer_url: MyString
-  thumbnail_url: MyString
-  duration_secs: 1
-  genre: one
-  is_featured: false
-  published_at: 2025-07-08 22:32:01
+first_movie:
+  title: Spider-Man
+  sinopsis: A young man gains spider-like abilities
+  trailer_url: https://example.com/spider-man-trailer.mp4
+  thumbnail_url: https://example.com/spider-man.jpg
+  duration_secs: 7200
+  genre: action
+  is_featured: true
+  published_at: <%= 1.week.ago %>
 
-two:
-  title: MyString
-  sinopsis: MyText
-  trailer_url: MyString
-  thumbnail_url: MyString
-  duration_secs: 1
-  genre: two
+second_movie:
+  title: The Dark Knight
+  sinopsis: Batman faces the Joker
+  trailer_url: https://example.com/dark-knight-trailer.mp4
+  thumbnail_url: https://example.com/dark-knight.jpg
+  duration_secs: 8820
+  genre: action
   is_featured: false
-  published_at: 2025-07-08 22:32:01
+  published_at: <%= 2.weeks.ago %>
+
+comedy_movie:
+  title: Superbad
+  sinopsis: High school comedy adventure
+  trailer_url: https://example.com/superbad-trailer.mp4
+  thumbnail_url: https://example.com/superbad.jpg
+  duration_secs: 6780
+  genre: comedy
+  is_featured: true
+  published_at: <%= 3.days.ago %>
+
+upcoming_movie:
+  title: Future Film
+  sinopsis: A movie coming soon
+  trailer_url: https://example.com/future-trailer.mp4
+  thumbnail_url: https://example.com/future.jpg
+  duration_secs: 7500
+  genre: drama
+  is_featured: false
+  published_at: <%= 1.week.from_now %>
