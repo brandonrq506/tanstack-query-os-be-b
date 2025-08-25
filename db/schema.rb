@@ -10,9 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_09_043201) do
+ActiveRecord::Schema[8.0].define(version: 2025_08_24_225202) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "comments", force: :cascade do |t|
+    t.bigint "movie_id", null: false
+    t.text "body", null: false
+    t.string "author_name", null: false
+    t.string "author_color", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["movie_id", "created_at"], name: "index_comments_on_movie_id_and_created_at"
+    t.index ["movie_id"], name: "index_comments_on_movie_id"
+  end
 
   create_table "genres", force: :cascade do |t|
     t.string "name"
@@ -31,8 +42,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_09_043201) do
     t.datetime "published_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "comments_count", default: 0, null: false
     t.index ["genre_id"], name: "index_movies_on_genre_id"
   end
 
+  add_foreign_key "comments", "movies"
   add_foreign_key "movies", "genres"
 end
