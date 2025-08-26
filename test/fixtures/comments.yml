@@ -1,0 +1,36 @@
+# frozen_string_literal: true
+
+one:
+  movie: first_movie
+  body: "This is a great movie! Really enjoyed the storyline and acting."
+  author_name: "Brave Otter"
+  author_color: "blue"
+  created_at: <%= 2.days.ago %>
+
+two:
+  movie: first_movie
+  body: "Not bad, but could have been better. The pacing was a bit slow."
+  author_name: "Witty Fox"
+  author_color: "green"
+  created_at: <%= 1.day.ago %>
+
+three:
+  movie: second_movie
+  body: "Amazing cinematography! The visuals were absolutely stunning."
+  author_name: "Gentle Panda"
+  author_color: "orange"
+  created_at: <%= 3.hours.ago %>
+
+recent_comment:
+  movie: first_movie
+  body: "Just watched this again and it's even better the second time!"
+  author_name: "Sunny Dolphin"
+  author_color: "rose"
+  created_at: <%= 1.hour.ago %>
+
+long_comment:
+  movie: comedy_movie
+  body: <%= "A" * 1500 %> # Test with long but valid comment
+  author_name: "Clever Tiger"
+  author_color: "red"
+  created_at: <%= 5.days.ago %>
