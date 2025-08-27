@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class V1::CommentsController < V1::ApiController
-  before_action :set_movie, except: %i[ show ]
+  before_action :set_movie, only: %i[ index create ]
   before_action :set_comment, only: %i[ show update destroy ]
 
   # GET /v1/movies/:movie_id/comments
@@ -29,7 +29,7 @@ class V1::CommentsController < V1::ApiController
     end
   end
 
-  # PATCH/PUT /v1/movies/:movie_id/comments/1
+  # PATCH/PUT /v1/comments/:id
   def update
     if @comment.update(comment_params)
       render json: @comment
@@ -38,7 +38,7 @@ class V1::CommentsController < V1::ApiController
     end
   end
 
-  # DELETE /v1/movies/:movie_id/comments/1
+  # DELETE /v1/comments/:id
   def destroy
     @comment.destroy!
     head :no_content
