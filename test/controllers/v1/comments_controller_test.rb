@@ -43,7 +43,7 @@ class V1::CommentsControllerTest < ActionDispatch::IntegrationTest
 
   # SHOW tests
   test "should show comment" do
-    get v1_movie_comment_url(@movie, @comment), as: :json
+    get v1_comment_url(@comment), as: :json
     assert_response :success
 
     json_response = JSON.parse(response.body)
@@ -54,7 +54,7 @@ class V1::CommentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should return 404 for non-existent comment" do
-    get v1_movie_comment_url(@movie, id: 99999), as: :json
+    get v1_comment_url(id: 99999), as: :json
     assert_response :not_found
   end
 
@@ -146,7 +146,7 @@ class V1::CommentsControllerTest < ActionDispatch::IntegrationTest
   test "should update comment" do
     new_body = "Updated comment body"
 
-    patch v1_movie_comment_url(@movie, @comment),
+    patch v1_comment_url(@comment),
           params: { comment: { body: new_body } },
           as: :json
 
@@ -161,7 +161,7 @@ class V1::CommentsControllerTest < ActionDispatch::IntegrationTest
   test "should not update comment with invalid body" do
     long_body = "a" * 2001
 
-    patch v1_movie_comment_url(@movie, @comment),
+    patch v1_comment_url(@comment),
           params: { comment: { body: long_body } },
           as: :json
 
@@ -173,7 +173,7 @@ class V1::CommentsControllerTest < ActionDispatch::IntegrationTest
   test "should sanitize HTML when updating comment" do
     html_body = "<script>alert('xss')</script><p>Updated content</p>"
 
-    patch v1_movie_comment_url(@movie, @comment),
+    patch v1_comment_url(@comment),
           params: { comment: { body: html_body } },
           as: :json
 
@@ -184,7 +184,7 @@ class V1::CommentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should return 404 when updating non-existent comment" do
-    patch v1_movie_comment_url(@movie, id: 99999),
+    patch v1_comment_url(id: 99999),
           params: { comment: { body: "Updated body" } },
           as: :json
 
@@ -194,7 +194,7 @@ class V1::CommentsControllerTest < ActionDispatch::IntegrationTest
   # DESTROY tests
   test "should destroy comment" do
     assert_difference("Comment.count", -1) do
-      delete v1_movie_comment_url(@movie, @comment), as: :json
+      delete v1_comment_url(@comment), as: :json
     end
 
     assert_response :no_content
@@ -204,14 +204,14 @@ class V1::CommentsControllerTest < ActionDispatch::IntegrationTest
   test "should decrement movie comments_count when destroying comment" do
     initial_count = @movie.reload.comments_count
 
-    delete v1_movie_comment_url(@movie, @comment), as: :json
+    delete v1_comment_url(@comment), as: :json
 
     assert_equal initial_count - 1, @movie.reload.comments_count
   end
 
   test "should return 404 when destroying non-existent comment" do
     assert_no_difference("Comment.count") do
-      delete v1_movie_comment_url(@movie, id: 99999), as: :json
+      delete v1_comment_url(id: 99999), as: :json
     end
 
     assert_response :not_found
@@ -240,7 +240,7 @@ class V1::CommentsControllerTest < ActionDispatch::IntegrationTest
     comment_id = @comment.id
 
     # Delete the comment
-    delete v1_movie_comment_url(@movie, @comment), as: :json
+    delete v1_comment_url(@comment), as: :json
     assert_response :no_content
 
     # Verify it's actually gone
