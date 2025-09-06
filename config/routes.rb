@@ -10,4 +10,10 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  namespace :v2 do
+    resources :movies do
+      resources :comments, only: [ :index ]
+    end
+  end
 end

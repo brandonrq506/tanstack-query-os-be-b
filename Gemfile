@@ -15,6 +15,9 @@ gem "puma", ">= 5.0"
 # gem "jbuilder"
 gem "active_model_serializers"
 
+# Pagination for API responses
+gem "pagy"
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
